@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -26,14 +27,13 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.yzb.lee.springsession.exception.LocalException;
 
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 300)
-// session有效时长, 单位为s
-@EnableCaching
-// 开启缓存
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 300) // session有效时长, 单位为s
+@EnableCaching // 开启缓存
+@PropertySource("redis/redis.properties")
+// @ConfigurationProperties(prefix="spring.redis")		// 前缀配置, 这样配置可以将spring.redis.password的值赋值给属性password
 public class RedisConfig {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RedisConfig.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RedisConfig.class);
 
 	/*
 	 * @Value("${spring.redis.host}") private String hostName;

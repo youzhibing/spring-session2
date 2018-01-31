@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yzb.lee.springsession.domain.DomainTest;
 import com.yzb.lee.springsession.service.IUserService;
 
 @RestController
@@ -22,6 +23,9 @@ public class SampleController {
 
 	@Autowired
 	private IUserService userService;
+	
+	@Autowired
+	private DomainTest domain;
 	
     @RequestMapping("/greet")
     Map<String, String> greet(HttpServletRequest req, HttpServletResponse resp) {
@@ -44,5 +48,10 @@ public class SampleController {
     @RequestMapping(value={"/name"}, method=RequestMethod.POST)
     String getName(@RequestParam(required=true) int id) {
     	return userService.getName(id);
+    }
+    
+    @RequestMapping(value={"/domain"})
+    DomainTest getDomain() {
+    	return domain;
     }
 }
