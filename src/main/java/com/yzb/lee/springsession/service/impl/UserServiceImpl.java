@@ -18,8 +18,8 @@ public class UserServiceImpl implements IUserService {
 	private IUserDao userDao;
 	
 	@Override
-	@Cacheable(cacheNames = {"name"})
-	public String getName() {
+	@Cacheable(value="nameCache",key="#id + 'getName'") 
+	public String getName(int id) {
 		LOGGER.info("调用了dao层");
 		return userDao.getName();
 	}

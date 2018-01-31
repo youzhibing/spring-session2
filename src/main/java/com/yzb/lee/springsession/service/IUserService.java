@@ -1,5 +1,5 @@
 package com.yzb.lee.springsession.service;
 
 public interface IUserService {
-	String getName();
+	String getName(int id);
 }

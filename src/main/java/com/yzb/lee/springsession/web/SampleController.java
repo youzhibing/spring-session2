@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yzb.lee.springsession.service.IUserService;
@@ -39,8 +41,8 @@ public class SampleController {
         return sessionAttrValues;
     }
     
-    @RequestMapping("/name")
-    String getName() {
-    	return userService.getName();
+    @RequestMapping(value={"/name"}, method=RequestMethod.POST)
+    String getName(@RequestParam(required=true) int id) {
+    	return userService.getName(id);
     }
 }
