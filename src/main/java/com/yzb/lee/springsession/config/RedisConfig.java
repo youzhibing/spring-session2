@@ -113,7 +113,7 @@ public class RedisConfig {
 	}
 
 	@SuppressWarnings("rawtypes")
-	@Bean
+	@Bean(name="redisTemplate")
 	public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory cf, RedisSerializer redisSerializer) {
 		RedisTemplate<String, String> redisTemplate = new RedisTemplate<String, String>();
 		redisTemplate.setConnectionFactory(cf);

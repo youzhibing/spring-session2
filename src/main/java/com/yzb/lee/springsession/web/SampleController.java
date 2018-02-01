@@ -19,6 +19,8 @@ import com.yzb.lee.springsession.service.IUserService;
 
 @RestController
 @RequestMapping("/hello")
+// @EnableConfigurationProperties(DomainTest.class) // 这个注解告诉Spring Boot 使能支持@ConfigurationProperties,让@ConfigurationProperties beans被添加
+// 用@Configuration或者 @Component注解也能使@ConfigurationProperties beans 被添加
 public class SampleController {
 
 	@Autowired
