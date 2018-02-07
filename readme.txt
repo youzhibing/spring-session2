@@ -30,4 +30,9 @@ redis集群启动：若集群已经已经在之前搭建好了，那么只需要
 		[root@master redis-3.2.10]# ./src/redis-trib.rb  create  --replicas  1  192.168.11.202:7000 192.168.11.202:7001  192.168.11.202:7002 192.168.11.222:7003  192.168.11.222:7004  192.168.11.222:7005
 连接redis集群
 	连接某个节点即可，h:节点ip, c:表示连接到集群, p:端口, a:集群密码
-	[root@slave1 redis-3.2.10]# ./src/redis-cli -h 192.168.11.222 -c -p 7004 -a myredis	
+	[root@slave1 redis-3.2.10]# ./src/redis-cli -h 192.168.11.222 -c -p 7004 -a myredis
+
+参考博客：
+	http://blog.csdn.net/javaloveiphone/article/details/53187314
+	
+	
