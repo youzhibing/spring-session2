@@ -15,4 +15,19 @@ spring-boot中使用spring-session
 	spring.session.store-type=none则是告诉spring以默认方式存储session(session存放在servlet容器中)
 
 @EnableRedisHttpSession与@EnableCaching没关系 前者开启Session缓存，后者开启普通缓存； 不是说配置了@EnableCaching，@EnableRedisHttpSession才起作用
-	
+
+redis集群启动：若集群已经已经在之前搭建好了，那么只需要启动各个节点即可，步骤2可以可以省略
+	1、节点启动
+		202节点
+		[root@slave1 redis-3.2.10]# ./src/redis-server redis_cluster/7000/redis.conf 
+		[root@slave1 redis-3.2.10]# ./src/redis-server redis_cluster/7001/redis.conf 
+		[root@slave1 redis-3.2.10]# ./src/redis-server redis_cluster/7002/redis.conf
+		222节点
+		[root@master redis-3.2.10]# ./src/redis-server redis_cluster/7003/redis.conf 
+		[root@master redis-3.2.10]# ./src/redis-server redis_cluster/7004/redis.conf 
+		[root@master redis-3.2.10]# ./src/redis-server redis_cluster/7005/redis.conf 
+	2、创建集群
+		[root@master redis-3.2.10]# ./src/redis-trib.rb  create  --replicas  1  192.168.11.202:7000 192.168.11.202:7001  192.168.11.202:7002 192.168.11.222:7003  192.168.11.222:7004  192.168.11.222:7005
+连接redis集群
+	连接某个节点即可，h:节点ip, c:表示连接到集群, p:端口, a:集群密码
+	[root@slave1 redis-3.2.10]# ./src/redis-cli -h 192.168.11.222 -c -p 7004 -a myredis	
