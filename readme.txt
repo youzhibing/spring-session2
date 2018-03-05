@@ -34,5 +34,8 @@ redis集群启动：若集群已经已经在之前搭建好了，那么只需要
 
 参考博客：
 	http://blog.csdn.net/javaloveiphone/article/details/53187314
-	
+
+spring rest异步请求
+	SpringRestTemplateController，对应推送地址
+	SpringRestTemplateTest，对应推送者
 	
